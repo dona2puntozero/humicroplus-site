@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>HumicroPlus - Bioattivatore Rigenerativo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: sans-serif; line-height: 1.6; max-width: 900px; margin: auto; padding: 2rem; background: #f8f8f8; color: #333; }
+    h1, h2 { color: #295c28; }
+    .section { margin-bottom: 2rem; }
+    .button-link { display: inline-block; background: #295c28; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 10px; }
+    label, select { display: block; margin: 0.5rem 0; }
+    #result { margin-top: 1rem; font-weight: bold; color: #2a2a2a; }
+    .logo { max-width: 250px; margin: 0 auto 2rem auto; display: block; }
+  </style>
+</head>
+<body>
+  <img src="Logo.jpg" alt="Logo HumusX" class="logo">
+  <h1>HumicroPlus</h1>
+  <p><strong>Bioattivatore microbico rigenerativo firmato HUMUSX</strong></p>
+
+  <div class="section">
+    <h2>Perché HumicroPlus?</h2>
+    <p>HumicroPlus nasce per rigenerare i suoli agricoli impoveriti da trattamenti chimici, monoculture e mancanza di sostanza organica. Grazie al suo "Fattore X", una carica microbiotica viva e stabilizzata, migliora la vitalità del terreno e sostiene la pianta nella sua fase produttiva.</p>
+  </div>
+
+  <div class="section">
+    <h2>Applicazioni consigliate</h2>
+    <ul>
+      <li><strong>Uliveti / Frutteti:</strong> Migliora la struttura del suolo e la risposta agli stress ambientali.</li>
+      <li><strong>Vigneti:</strong> Rende il suolo più attivo, riducendo l'incidenza di patologie radicali.</li>
+      <li><strong>Ortaggi:</strong> Favorisce l'assorbimento dei nutrienti e migliora la qualità del raccolto.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <a href="#calcolatore" class="button-link">CALCOLA LE QUANTITÀ IDEALI</a>
+  </div>
+
+  <div class="section" id="calcolatore">
+    <h2>Calcolatore delle Quantità Ottimali</h2>
+    <label for="coltura">Seleziona la coltura:</label>
+    <select id="coltura">
+      <option value="uliveti">Uliveti / Frutteti</option>
+      <option value="vigneti">Vigneti</option>
+      <option value="ortaggi">Ortaggi</option>
+    </select>
+
+    <label for="suolo">Condizione del suolo:</label>
+    <select id="suolo">
+      <option value="chimico">Terreno trattato chimicamente (< 2% organico)</option>
+      <option value="stressato">Terreno stressato (intorno al 2% organico)</option>
+      <option value="biologico">Terreno in biologico</option>
+      <option value="rigenerativo">Terreno biodinamico rigenerativo</option>
+    </select>
+
+    <button onclick="calcolaDosi()">Calcola dosi</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calcolaDosi() {
+      const coltura = document.getElementById("coltura").value;
+      const suolo = document.getElementById("suolo").value;
+
+      let min = 0, max = 0;
+
+      if (suolo === "chimico") { min = 30; max = 40; }
+      else if (suolo === "stressato") { min = 20; max = 30; }
+      else if (suolo === "biologico") { min = 10; max = 20; }
+      else if (suolo === "rigenerativo") { min = 10; max = 10; }
+
+      if (coltura === "ortaggi") {
+        min = Math.round(min * 1.33);
+        max = Math.round(max * 1.33);
+      }
+
+      document.getElementById("result").innerText =
+        `Per la prima applicazione consigliamo ${max} L/ha. Per il mantenimento ${min} L/ha.`;
+    }
+  </script>
+</body>
+</html>
